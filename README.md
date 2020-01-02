@@ -33,3 +33,5 @@ Read in `octet mode` a linux kernel file from a tftp server:
     $ ./tftp -o -r /images/ubuntu-bionic-x86-64/linux -s 172.31.43.161
     stats: 8544088 bytes recv (8343.8 kbytes) (16688 blocks) (0 retr)
 
+    $ file linux 
+    linux: Linux kernel x86 boot executable bzImage, version 4.18.0-10-generic (buildd@lgw01-amd64-060) #11-Ubuntu SMP Thu Oct 11 15:13:55 UTC 2018, RO-rootFS, swap_dev 0x8, Normal VGA
