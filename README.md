@@ -27,7 +27,7 @@ Write the local file `gawk.pdf` to the tftp server `172.255.0.4`:
 
 Read the remote file `vmlinuz` from the tftp server `172.255.0.4`:
 
-     ./tftp -t vmlinuz -s 172.255.0.1
+     ./tftp -r vmlinuz -s 172.255.0.1
 
 
 Read in `octet mode` a linux kernel file from a tftp server:
@@ -37,3 +37,6 @@ Read in `octet mode` a linux kernel file from a tftp server:
 
     $ file linux 
     linux: Linux kernel x86 boot executable bzImage, version 4.18.0-10-generic (buildd@lgw01-amd64-060) #11-Ubuntu SMP Thu Oct 11 15:13:55 UTC 2018, RO-rootFS, swap_dev 0x8, Normal VGA
+
+
+Note that if a file with the same name exists in the current directory the content of the downloaded file is appended to the existing one.
