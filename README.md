@@ -1,4 +1,6 @@
-# An implementation of The TFTP Protocol (v2) rfc1350, http://tools.ietf.org/html/rfc1350
+# A basic implementation of The TFTP Protocol (v2) rfc1350
+       
+         http://tools.ietf.org/html/rfc1350
 
 This code was a one-time write of a tftp client. In the future I would improve it by adding 
 support for other `request for comments` (rfcs), I will start by the block size option, right 
