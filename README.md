@@ -28,7 +28,7 @@ Read the remote file `vmlinuz` from the tftp server `172.255.0.4`:
      ./tftp -t vmlinuz -s 172.255.0.1
 
 
-Read in `octet mode` the a linux kernel from a tftp server:
+Read in `octet mode` a linux kernel file from a tftp server:
 
     $ ./tftp -o -r /images/ubuntu-bionic-x86-64/linux -s 172.31.43.161
     stats: 8544088 bytes recv (8343.8 kbytes) (16688 blocks) (0 retr)
