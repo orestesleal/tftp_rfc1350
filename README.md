@@ -1,7 +1,17 @@
 # An implementation of The TFTP Protocol (v2) rfc1350, http://tools.ietf.org/html/rfc1350
 
-This code is a one-time write of a tftp client, I would improve it by adding support for 
-other request for comments. To build the client just do:
+This code was a one-time write of a tftp client. In the future I would improve it by adding 
+support for other `request for comments` (rfcs), I will start by the block size option, right 
+now it uses `512` byte blocks (standard tftp) and do not negotiate block sizes, the following 
+output shows that this client used 512 bytes blocks (shown as 516 plus the tftp overhead). 
+Therefore not taking advantage of the network bandwidth and OS capabilities to transfer data, 
+and since `TFTP` is a request-ack protocol for each block, a 512 byte block size on transfers
+of several megabytes it can be slower:
+
+    10:43:37.078316 IP (tos 0x0, ttl 64, id 1988, offset 0, flags [none], proto UDP (17), length 544)
+        172.31.43.161.47961 > 172.31.41.98.36855: UDP, length 516
+
+To build the `tftp` client just do:
 
 `cc -std=c99 tftp.c -o tftp`
 
@@ -13,6 +23,13 @@ Write the local file `gawk.pdf` to the tftp server `172.255.0.4`:
 
      ./tftp -w gawk.pdf -s 172.255.0.1
 
-Reac the remote file `vmlinuz` from the tftp server `172.255.0.4`:
+Read the remote file `vmlinuz` from the tftp server `172.255.0.4`:
 
      ./tftp -t vmlinuz -s 172.255.0.1
+
+
+Read in `octet mode` the a linux kernel from a tftp server:
+
+    $ ./tftp -o -r /images/ubuntu-bionic-x86-64/linux -s 172.31.43.161
+    stats: 8544088 bytes recv (8343.8 kbytes) (16688 blocks) (0 retr)
+

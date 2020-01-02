@@ -48,6 +48,7 @@
 #include <arpa/inet.h>
 #include <sys/types.h>
 #include <sys/time.h>
+#include <libgen.h>
 #include "tftp.h"
 
 #define data_packet(b)	((b[1]) == TFTP_DATA_PACKET))
@@ -294,7 +295,14 @@ copy_tftp_data(size_t blk_size, char * data, const char * file, size_t mode)
 {
 	FILE *fd;
 
-	if ( (fd = fopen(file, "a")) == NULL ) {
+	/*
+	 * The path to the tftp server will most likely contain / characters on the path,
+	 * remove those and get only the filename to store in the local directory
+	 */
+	char *local_dir_file = basename(file);
+
+	if ( (fd = fopen(local_dir_file, "a")) == NULL ) {
+	        fprintf(stderr, "fopen(3) error, NULL returned on function copy_tftp_data() when copying tftp blocks to %s\n", local_dir_file);
 		return 0;
 	}
 
@@ -305,10 +313,8 @@ copy_tftp_data(size_t blk_size, char * data, const char * file, size_t mode)
 		crlf2lf(data + TFTP_HDR_SIZE, blk_size - TFTP_HDR_SIZE);
 	}
 
-	if ( fwrite( data + TFTP_HDR_SIZE, blk_size - TFTP_HDR_SIZE,
-														1, fd) == 0 ) {
-		goto out_error;
-	}
+	if ( fwrite( data + TFTP_HDR_SIZE, blk_size - TFTP_HDR_SIZE, 1, fd) == 0 ) 
+	    goto out_error;
 
 	fclose(fd);
 	return 1;
