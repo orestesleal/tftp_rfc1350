@@ -3,7 +3,7 @@
  *  A compliant (rfc1350) client implementation of the network
  *	protocol Trivial File Tranfer Protocol, TFTP rev 2 [1]
  *
- * 	Copyright Orestes Leal Rodriguez 2015 <lukes357@gmail.com>
+ * 	Copyright Orestes Leal Rodriguez 2015 <olealrd1981@gmail.com>
  *
  *	This program is free software; you can redistribute it and/or
  *	modify it under the terms of the GNU General Public License
