@@ -86,6 +86,7 @@ static inline ssize_t check_ack(const void* hdr, size_t block);
 
 int main(int argc, char * argv[])
 {
+	extern char *optarg;
 	int ch;
 	int sock; 
 	struct sockaddr_in s_addr;	/* tftp server */
