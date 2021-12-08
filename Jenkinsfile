@@ -8,7 +8,7 @@ pipeline {
             }
         }
     }
-    stages {
+    post {
     	   success {
 	      echo 'Pipeline ran OK'
 	   }
