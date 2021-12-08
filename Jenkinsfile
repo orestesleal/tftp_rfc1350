@@ -8,4 +8,15 @@ pipeline {
             }
         }
     }
+    stages {
+    	   success {
+	      echo 'Pipeline ran OK'
+	   }
+	   failure {
+	      echo 'The Pipeline FAILED'
+	   }
+	   changed {
+	      echo 'This pipeline has changed state'
+           }
+    }
 }
